@@ -40,8 +40,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     ];
 
     /** @var array $testData */
-    private $testData = [
-
+    private $testDataEmpty = [
+        'username' => null,
+        'email' => null,
+        'password' => null,
     ];
 
     public function setUp()
@@ -78,8 +80,17 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
          );
     }
 
-    public function testTest()
+    public function testInvalidRuleset()
     {
-        
+        $invalidRule = $this->ruleSet;
+        $invalidRule['username']['invalidrule'] = 'test';
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->validator->doCheck($this->testDataEmpty);
+    }
+
+    public function testCheck()
+    {
+        $this->validator->doCheck($this->testDataEmpty);
     }
 }

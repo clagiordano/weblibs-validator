@@ -48,23 +48,28 @@ class Validator
         $this->dataArray = $dataArray;
 
         foreach ($this->dataArray as $field => $value) {
+            /**
+             * If field has rules defined, do validation
+             */
             if (isset($this->validatorRules[$field])) {
                 $this->doValidate(
-                    $field,
-                    $value,
+                    $field, 
+                    $value, 
                     $this->validatorRules[$field]
                 );
-            }
+            }            
         }
     }
 
     protected function doValidate($field, $value, $rules)
     {
         foreach ($rules as $rule => $satisfier) {
-            $validatorFunction = 'validate' . $this->allowedValidator[$rule];
+            $validatorFunction = 'validate' . ValidatorConfig::$allowedValidator[$rule];
 
-            if (!is_callable($this->{$validatorFunction})) {
-                //call_user_func()
+            if (!is_callable([$this, $validatorFunction])) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . ": Ivalid validator rule '{$rule}' for field '{$field}'"
+                );
             }
         }
     }
