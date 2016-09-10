@@ -63,7 +63,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
          **/
         $this->validator = new Validator($this->errorHandler);
         $this->assertInstanceOf(
-             'clagiordano\weblibs\validator\Validator', 
+             'clagiordano\weblibs\validator\Validator',
              $this->validator
          );
 
@@ -80,10 +80,18 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
          );
     }
 
+    /**
+     * @group invalid
+     */
     public function testInvalidRuleset()
     {
-        $invalidRule = $this->ruleSet;
-        $invalidRule['username']['invalidrule'] = 'test';
+        $invalidRules = $this->ruleSet;
+        $invalidRules['username']['invalidrule'] = 'test';
+        $this->validator->setRules($invalidRules);
+        $this->assertEquals(
+             $invalidRules,
+             $this->validator->getRules()
+         );
 
         $this->setExpectedException('\InvalidArgumentException');
         $this->validator->doCheck($this->testDataEmpty);

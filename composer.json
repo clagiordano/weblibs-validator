@@ -30,6 +30,7 @@
         "clagiordano/weblibs-dbabstraction": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "zf2timo/phpunit-pretty-result-printer": "1.0.0"
     }
 }

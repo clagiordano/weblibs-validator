@@ -53,24 +53,74 @@ class Validator
              */
             if (isset($this->validatorRules[$field])) {
                 $this->doValidate(
-                    $field, 
-                    $value, 
+                    $field,
+                    $value,
                     $this->validatorRules[$field]
                 );
-            }            
+            }
         }
     }
 
     protected function doValidate($field, $value, $rules)
     {
         foreach ($rules as $rule => $satisfier) {
-            $validatorFunction = 'validate' . ValidatorConfig::$allowedValidator[$rule];
+            if (!isset(ValidatorConfig::$allowedValidator[$rule])) {
+                throw new \InvalidArgumentException(
+                    __METHOD__ . ": Ivalid validator rule '{$rule}' for field '{$field}'"
+                );
+            }
 
+            $validatorFunction = 'validate' . ValidatorConfig::$allowedValidator[$rule];
             if (!is_callable([$this, $validatorFunction])) {
                 throw new \InvalidArgumentException(
                     __METHOD__ . ": Ivalid validator rule '{$rule}' for field '{$field}'"
                 );
             }
+
+            if (!call_user_func_array(
+                [
+                    $this,
+                    $validatorFunction
+                ],
+                [
+                    $field,
+                    $value,
+                    $satisfier
+                ]
+            )) {
+                echo "validation failed\n";
+            }
         }
     }
+
+    protected function validateRequired($field, $value, $satisfier)
+    {
+        unset($field);
+        unset($satisfier);
+
+        return !empty(trim($value));
+    }
+
+    protected function validateMinlenght($field, $value, $satisfier)
+    {
+        unset($field);
+
+        return mb_strlen($value) >= $satisfier;
+    }
+
+    protected function validateMaxlenght($field, $value, $satisfier)
+    {
+        unset($field);
+
+        return mb_strlen($value) <= $satisfier;
+    }
+
+    protected function validateEmail($field, $value, $satisfier)
+    {
+        unset($field);
+        unset($satisfier);
+
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
+    
 }
