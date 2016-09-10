@@ -4,7 +4,7 @@
     "type": "library",
     "homepage": "https://github.com/clagiordano/weblibs-validator.git",
     "license": "LGPL-3.0",
-    "keywords": ["clagiordano", "weblibs", "data", "validator", "form", "validation", "library", "rules", "messages"],
+    "keywords": ["clagiordano", "weblibs", "data", "validator", "form", "validation", "library", "rules", "messages", "fields", "required", "lenght", "patterns"],
     "authors": [
         {
             "name": "Claudio Giordano",
