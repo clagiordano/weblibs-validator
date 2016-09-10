@@ -26,7 +26,8 @@
         }
     },
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "clagiordano/weblibs-database": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
