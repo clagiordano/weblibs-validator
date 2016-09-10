@@ -27,7 +27,7 @@
     },
     "require": {
         "php": ">=5.4",
-        "clagiordano/weblibs-database": "*"
+        "clagiordano/weblibs-dbabstraction": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
