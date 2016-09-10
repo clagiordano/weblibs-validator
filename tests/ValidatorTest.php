@@ -2,6 +2,8 @@
 
 namespace clagiordano\weblibs\validator\tests;
 
+use clagiordano\weblibs\validator\ErrorHandler;
+use clagiordano\weblibs\validator\Validator;
 
 /**
  * Class ValidatorTest
@@ -9,6 +11,8 @@ namespace clagiordano\weblibs\validator\tests;
  */
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var ErrorHandler $errorhandler */
+    private $errorHandler = null;
     /** @var Validator $validator */
     private $validator = null;
 
@@ -38,10 +42,27 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
 
+        /**
+         * Create a new errorhandler object
+         **/
+         $this->errorHandler = new ErrorHandler();
+         $this->assertInstanceOf(
+             'clagiordano\weblibs\validator\ErrorHandler', 
+             $this->errorHandler
+         );
 
         /**
          * Create a new validator object
          **/
-        $this->validator = new Application();
+        $this->validator = new Validator($this->errorHandler);
+        $this->assertInstanceOf(
+             'clagiordano\weblibs\validator\Validator', 
+             $this->validator
+         );
+    }
+
+    public function testTest()
+    {
+
     }
 }

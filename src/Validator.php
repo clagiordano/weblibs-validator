@@ -2,7 +2,7 @@
 
 namespace clagiordano\weblibs\validator;
 
-use ErrorHandler;
+use clagiordano\weblibs\validator\ErrorHandler;
 
 /**
  *
@@ -53,8 +53,8 @@ class Validator
         foreach ($rules as $rule => $satisfier) {
             $validatorFunction = 'validate' . $this->allowedValidator[$rule];
 
-            if (!is_callable($this->{$validatorFunction}) {
-                call_user_func()
+            if (!is_callable($this->{$validatorFunction})) {
+                //call_user_func()
             }
         }
     }
