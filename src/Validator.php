@@ -28,9 +28,19 @@ class Validator
         $this->validatorRules = $validatorRules;
     }
 
+    public function getRules()
+    {
+        return $this->validatorRules;
+    }
+
     public function setMessages(array $validatorMessages = [])
     {
         $this->validatorMessages = $validatorMessages;
+    }
+
+    public function getMessages()
+    {
+        return $this->validatorMessages;
     }
 
     public function doCheck(array $dataArray)

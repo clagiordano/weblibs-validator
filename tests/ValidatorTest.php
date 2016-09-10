@@ -34,6 +34,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         ],
     ];
 
+    /** @var array $messages */
+    private $messages = [
+
+    ];
+
     /** @var array $testData */
     private $testData = [
 
@@ -59,10 +64,22 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
              'clagiordano\weblibs\validator\Validator', 
              $this->validator
          );
+
+         $this->validator->setRules($this->ruleSet);
+         $this->assertEquals(
+             $this->ruleSet,
+             $this->validator->getRules()
+         );
+
+         $this->validator->setMessages($this->messages);
+         $this->assertEquals(
+             $this->messages,
+             $this->validator->getMessages()
+         );
     }
 
     public function testTest()
     {
-
+        
     }
 }
