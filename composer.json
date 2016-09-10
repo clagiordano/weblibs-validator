@@ -1,0 +1,34 @@
+{
+    "name": "clagiordano/weblibs-validator",
+    "description": "Library for generic data validation servis with configurable rules and messages",
+    "type": "library",
+    "homepage": "https://github.com/clagiordano/weblibs-validator.git",
+    "license": "LGPL-3.0",
+    "keywords": ["clagiordano", "weblibs", "data", "validator", "form", "validation", "library", "rules", "messages"],
+    "authors": [
+        {
+            "name": "Claudio Giordano",
+            "email": "claudio.giordano@autistici.org",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "claudio.giordano@autistici.org"
+    },
+    "autoload": {
+        "psr-4": {
+            "clagiordano\\weblibs\\validator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "clagiordano\\weblibs\\validator\\tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
