@@ -54,7 +54,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
          **/
          $this->errorHandler = new ErrorHandler();
          $this->assertInstanceOf(
-             'clagiordano\weblibs\validator\ErrorHandler', 
+             'clagiordano\weblibs\validator\ErrorHandler',
              $this->errorHandler
          );
 
