@@ -63,9 +63,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
          **/
         $this->validator = new Validator($this->errorHandler);
         $this->assertInstanceOf(
-             'clagiordano\weblibs\validator\Validator',
-             $this->validator
-         );
+            'clagiordano\weblibs\validator\Validator',
+            $this->validator
+        );
 
          $this->validator->setRules($this->ruleSet);
          $this->assertEquals(
