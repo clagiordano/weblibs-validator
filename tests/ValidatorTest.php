@@ -89,9 +89,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $invalidRules['username']['invalidrule'] = 'test';
         $this->validator->setRules($invalidRules);
         $this->assertEquals(
-             $invalidRules,
-             $this->validator->getRules()
-         );
+            $invalidRules,
+            $this->validator->getRules()
+        );
 
         $this->setExpectedException('\InvalidArgumentException');
         $this->validator->doCheck($this->testDataEmpty);
