@@ -32,6 +32,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'required' => true,
             'minlenght' => 3
         ],
+        'test_alphanumeric' => [
+            'required' => true,
+            'alnum' => true
+        ],
         'password_confirm' => [
             'required' => true,
             'minlenght' => 3,
@@ -113,6 +117,20 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @group validator
+     * @group alnum
+     */
+    public function testAlnum()
+    {
+        $testData = [
+            'test_alphanumeric' => 'abc123',
+        ];
+
+        $this->validator->doCheck($testData);
+        //var_dump($this->validator->doCheck($testData));
+    }
+
+    /**
+     * @group validator
      * @group match
      */
     public function testMatch()
@@ -144,5 +162,24 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->validator->doCheck($testData);
         //$this->assertFalse($this->validator->doCheck($testData));
+    }
+
+    public function testInvalidValidator()
+    {
+        $ruleSet = [
+            'test_field' => [
+                'invalid_validator' => true
+            ]
+        ];
+
+        $testData = [
+            'test_field' => 'test value'
+        ];
+
+        $this->validator->setRules($ruleSet);
+        $this->assertEquals($ruleSet, $this->validator->getRules());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->validator->doCheck($testData);
     }
 }
