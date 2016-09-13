@@ -122,4 +122,26 @@ class Validator
 
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
+
+    protected function validateAlphanumeric($field, $value, $satisfier)
+    {
+        unset($field);
+        unset($satisfier);
+
+        return ctype_alnum($value);
+    }
+
+    protected function validateMatch($field, $value, $satisfier)
+    {
+        unset($field);
+
+        return ($value === $this->dataArray[$satisfier]);
+    }
+
+    protected function validateRegexp($field, $value, $satisfier)
+    {
+        unset($field);
+        
+        return preg_match("/{$satisfier}/", $value);
+    }
 }

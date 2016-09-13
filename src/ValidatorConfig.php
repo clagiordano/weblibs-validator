@@ -14,7 +14,7 @@ class ValidatorConfig
         'email' => 'Email',
         'alnum' => 'Alphanumeric',
         'match' => 'Match',
-        'unique' => 'Unique',
+        //'unique' => 'Unique',
         'regexp' => 'Regexp',
     ];
 }

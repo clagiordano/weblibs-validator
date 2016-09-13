@@ -32,6 +32,15 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'required' => true,
             'minlenght' => 3
         ],
+        'password_confirm' => [
+            'required' => true,
+            'minlenght' => 3,
+            'match' => 'password'
+        ],
+        'test_regexp' => [
+            'required' => true,
+            'regexp' => '^(\w+)$'
+        ]
     ];
 
     /** @var array $messages */
@@ -100,5 +109,40 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function testCheck()
     {
         $this->validator->doCheck($this->testDataEmpty);
+    }
+
+    /**
+     * @group validator
+     * @group match
+     */
+    public function testMatch()
+    {
+        $testData = [
+            'password' => '12345',
+            'password_confirm' => '12345',
+        ];
+
+        var_dump($this->validator->doCheck($testData));
+    }
+
+    /**
+     * @group validator
+     * @group regexp
+     */
+    public function testRegexp()
+    {
+        $testData = [
+            'test_regexp' => 'singleWord'
+        ];
+
+        $this->validator->doCheck($testData);
+        //$this->assertTrue($this->validator->doCheck($testData));
+
+        $testData = [
+            'test_regexp' => 'Two Words'
+        ];
+
+        $this->validator->doCheck($testData);
+        //$this->assertFalse($this->validator->doCheck($testData));
     }
 }
