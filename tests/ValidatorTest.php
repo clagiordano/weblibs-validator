@@ -65,11 +65,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         /**
          * Create a new errorhandler object
          **/
-         $this->errorHandler = new ErrorHandler();
-         $this->assertInstanceOf(
-             'clagiordano\weblibs\validator\ErrorHandler',
-             $this->errorHandler
-         );
+        $this->errorHandler = new ErrorHandler();
+        $this->assertInstanceOf(
+            'clagiordano\weblibs\validator\ErrorHandler',
+            $this->errorHandler
+        );
 
         /**
          * Create a new validator object
@@ -80,14 +80,14 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             $this->validator
         );
 
-         $this->validator->setRules($this->ruleSet);
-         $this->assertEquals(
+        $this->validator->setRules($this->ruleSet);
+        $this->assertEquals(
              $this->ruleSet,
              $this->validator->getRules()
          );
 
-         $this->validator->setMessages($this->messages);
-         $this->assertEquals(
+        $this->validator->setMessages($this->messages);
+        $this->assertEquals(
              $this->messages,
              $this->validator->getMessages()
          );
